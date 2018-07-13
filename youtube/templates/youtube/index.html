@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+{% if og_title %} <title>{{ og_title }}</title> {% endif %}
+<link rel="apple-touch-icon" sizes="180x180" href="https://assets.geniuslounge.com/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://assets.geniuslounge.com/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://assets.geniuslounge.com/favicon-16x16.png">
+<link rel="manifest" href="https://assets.geniuslounge.com/site.webmanifest">
+<link rel="mask-icon" href="https://assets.geniuslounge.com/safari-pinned-tab.svg" color="#3300ff">
+<link rel="shortcut icon" href="https://assets.geniuslounge.com/favicon.ico">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="msapplication-config" content="https://assets.geniuslounge.com/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+    {% if video_id %}
+    <!-- redirect logic -->
+<script>
+ window.location.replace("https://www.youtube.com/watch?v={{ video_id }}")
+</script>
+<noscript><meta http-equiv="refresh" content="0; https://www.youtube.com/watch?v={{ video_id }}"></noscript>
+<!-- redirect logic -->
+<meta content="http://www.geniuslounge.com/{% if live == "True" %}live/{% endif %}{{ video_id }}" property="og:url"/>
+{% endif %}
+
+
+{% if og_title %}
+    <meta content="{% autoescape on %}{% if live == "True" %}🔴🎥 {{ channel_name }} LIVE: {% endif %}{{ og_title }}{% endautoescape %}" property="og:title"/>
+{% endif %}
+
+
+{% if og_image %}
+    <meta content="{{ og_image }}" property="og:image"/>
+{% endif %}
+
+
+{% if og_description %}
+    <meta content="{% autoescape on %}{{ og_description }}{% endautoescape %}" property="og:description"/>
+{% endif %}
+
+
+{% if og_icon %}
+    <meta content="{{ og_icon }}" property="og:icon"/>
+{% endif %}
+
+
+{% if twitter_title %}
+    <meta content="{% autoescape on %}{% if live == "True" %}🔴🎥 {{ channel_name }} LIVE: {% endif %}{{ twitter_title }}{% endautoescape %}" name="twitter:title"/>
+{% endif %}
+
+
+{% if twitter_description %}
+    <meta content="{% autoescape on %}{{ twitter_description }}{% endautoescape %}" name="twitter:description"/>
+{% endif %}
+
+
+    <meta content="summary_large_image" name="twitter:card"/>
+    <meta content="@geniuslounge" name="twitter:site"/>
+    <meta content="@geniuslounge" name="twitter:creator"/>
+ </head>
+ <body>
+ </body>
+</html>
