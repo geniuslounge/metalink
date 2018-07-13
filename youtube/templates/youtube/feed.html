@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+    <title>{{ channel_name }}</title>
+  <link>https://www.youtube.com/channel/{{ channel_id }}</link>
+  <description>{{ channel_description }}</description>
+    {% for x in items %}
+  <item>
+    <title>{{ x.snippet.title }}</title>
+    <link>http://geniuslounge.com/{{ x.id.videoId }}</link>
+    <enclosure url="https://i.ytimg.com/vi/{{ x.id.videoId }}/maxresdefault.jpg" length="1000000" type="image/jpeg" />
+    <pubDate>{{ x.snippet.pubDate }}</pubDate>
+    <guid isPermaLink="false">{{ x.id.videoId }}</guid>
+    <description>{{ x.snippet.description }}</description>
+  </item>{% endfor %}
+</channel>
+</rss>
+
+
