@@ -1,0 +1,1 @@
+web: gunicorn share2.wsgi
