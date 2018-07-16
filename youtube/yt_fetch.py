@@ -82,7 +82,3 @@ def get_best_image(blob):
         return blob['items'][0]['snippet']['thumbnails']['default']['url']
     else:
         return "http://assets.geniuslounge.com/YouTubeLogo.png"
-
-
-
-print(metadata("sMDMAc8msVk"))
