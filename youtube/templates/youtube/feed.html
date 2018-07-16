@@ -7,8 +7,8 @@
     {% for x in items %}
   <item>
     <title>{{ x.snippet.title }}</title>
-    <link>http://geniuslounge.com/{{ x.id.videoId }}</link>
-    <enclosure url="https://i.ytimg.com/vi/{{ x.id.videoId }}/maxresdefault.jpg" length="1000000" type="image/jpeg" />
+    <link>http://{{ channel_domain }}/{{ x.id.videoId }}</link>
+    <enclosure url="{{ x.snippet.best_image }}" length="1000000" type="image/jpeg" />
     <pubDate>{{ x.snippet.pubDate }}</pubDate>
     <guid isPermaLink="false">{{ x.id.videoId }}</guid>
     <description>{{ x.snippet.description }}</description>
