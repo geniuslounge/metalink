@@ -21,7 +21,7 @@
 </script>
 <noscript><meta http-equiv="refresh" content="0; https://www.youtube.com/watch?v={{ video_id }}"></noscript>
 <!-- redirect logic -->
-<meta content="http://www.geniuslounge.com/{% if live == "True" %}live/{% endif %}{{ video_id }}" property="og:url"/>
+<meta content="http://www.{{ channel_domain }}/{% if live == "True" %}live/{% endif %}{{ video_id }}" property="og:url"/>
 {% endif %}
 
 
