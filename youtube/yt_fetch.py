@@ -46,6 +46,7 @@ def channel_feed(channel_id):
 
     for x in blob['items']:
         x['snippet']['pubDate'] = format_to_RFC822(x['snippet']['publishedAt'])
+        x['snippet']['best_image'] = metadata(x['id']['videoId'])['og_image']
 
     return blob
 
