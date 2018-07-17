@@ -61,7 +61,7 @@ def get_best_image(item):
     elif 'default' in item['snippet']['thumbnails']:
         return item['snippet']['thumbnails']['default']['url']
     else:
-        return "http://assets.geniuslounge.com/YouTubeLogo.png"
+        return "https://geniuslounge.github.io/share2/images/YouTubeLogo.png"
 
 def request_is_live(request, video_id):
     """Determines is the request is coming from the /live endpoint. This affects the way the metadata is displayed for share links."""
