@@ -1,20 +1,27 @@
 <img src="https://geniuslounge.github.io/share2/images/gllogo.png" width=150px> </img>
 # MetaLink
 
-A prettier way to share your YouTube videos on Facebook, Twitter, and other social media.
+Generate beautiful social links for you YouTube videos, as well as YouTube RSS feeds.
 
 ### Sometimes social media sites don't treat your YouTube videos with enough respect
 MetaLink provides the whole thumbnail to the social service, rather than a cropped square (Facebook) or text link (Twitter).
 
 Currently designed to be deployed via [heroku](http://heroku.com), it should be fairly easy to update to your deployment system of choice.
 
-
+# Pretty links for your YouTube Videos
 ## Before and After (Facebook)
 ![](https://geniuslounge.github.io/share2/images/facebook.png)
 
 
 ## Before and After (Twitter)
 ![](https://geniuslounge.github.io/share2/images/twitter.png)
+
+
+## Try it!
+Post this to Facebook: `http://geniuslounge.com/WaFMDe5cE8w`
+
+or visit this RSS feed: `http://geniuslounge.com/feed/UCU261fOCKtUwxigoCcZuVHQ`
+
 
 All you need to do is set the following environment variables
 
