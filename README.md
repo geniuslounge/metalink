@@ -18,7 +18,7 @@ Currently designed to be deployed via [heroku](http://heroku.com), it should be 
 
 
 
-# RSS Feeds!
+# YouTube RSS Feeds!
 ### (And RFC822 compatible)
 ![](https://geniuslounge.github.io/share2/images/rss.png)
 
@@ -33,7 +33,7 @@ or your own channel: `http://geniuslounge.com/feed/{YouTube Channel ID}`
 
 
 
-All you need to do is set the following environment variables
+All you need to do is set the following environment variables:
 
 * `channel_domain` - in the form of `geniuslounge.com`
 * `DISABLE_COLLECTSTATIC = 1` - For heroku config, this was required, as it doesn't even have a DB, or defined static files!
