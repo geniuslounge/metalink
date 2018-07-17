@@ -44,7 +44,6 @@ def get_multiple_best_images(results_from_multi_metadata):
     for x in results_from_multi_metadata['items']:
         id = x['id']
         image_list[id] = get_best_image(x)
-    print(image_list)
     return image_list
 
 
