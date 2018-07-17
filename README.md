@@ -17,6 +17,12 @@ Currently designed to be deployed via [heroku](http://heroku.com), it should be 
 ![](https://geniuslounge.github.io/share2/images/twitter.png)
 
 
+
+# RSS Feeds!
+### (And RFC822 compatible)
+![](https://geniuslounge.github.io/share2/images/rss.png)
+
+
 ## Try it!
 * Post this to Facebook: `http://geniuslounge.com/WaFMDe5cE8w`
 or try your own video: `http://geniuslounge.com/{YouTube Video ID}`
