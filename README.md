@@ -18,9 +18,13 @@ Currently designed to be deployed via [heroku](http://heroku.com), it should be 
 
 
 ## Try it!
-Post this to Facebook: `http://geniuslounge.com/WaFMDe5cE8w`
+* Post this to Facebook: `http://geniuslounge.com/WaFMDe5cE8w`
+or try your own video: `http://geniuslounge.com/{YouTube Video ID}`
 
-or visit this RSS feed: `http://geniuslounge.com/feed/UCU261fOCKtUwxigoCcZuVHQ`
+* For a RSS feed: `http://geniuslounge.com/feed/UCU261fOCKtUwxigoCcZuVHQ`
+or your own channel: `http://geniuslounge.com/feed/{YouTube Channel ID}`
+
+
 
 
 All you need to do is set the following environment variables
