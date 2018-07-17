@@ -1,4 +1,4 @@
-<img src="https://geniuslounge.github.io/share2/images/gllogo.png" width=150px> </img>
+<img src="https://geniuslounge.github.io/metalink/images/gllogo.png" width=150px> </img>
 # MetaLink
 
 Generate beautiful social links for you YouTube videos, as well as YouTube RSS feeds.
@@ -10,17 +10,17 @@ Currently designed to be deployed via [heroku](http://heroku.com), it should be 
 
 # Pretty links for your YouTube Videos
 ## Before and After (Facebook)
-![](https://geniuslounge.github.io/share2/images/facebook.png)
+![](https://geniuslounge.github.io/metalink/images/facebook.png)
 
 
 ## Before and After (Twitter)
-![](https://geniuslounge.github.io/share2/images/twitter.png)
+![](https://geniuslounge.github.io/metalink/images/twitter.png)
 
 
 
 # YouTube RSS Feeds!
 ### (And RFC822 compatible)
-![](https://geniuslounge.github.io/share2/images/rss.png)
+![](https://geniuslounge.github.io/metalink/images/rss.png)
 
 
 ## Try it!
