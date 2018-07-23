@@ -25,7 +25,7 @@ SECRET_KEY = os.environ['django_secret_key']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'share-geniuslounge.herokuapp.com', 'share.geniuslounge.com']
+ALLOWED_HOSTS = ['127.0.0.1', '*.herokuapp.com', 'share.geniuslounge.com']
 
 
 # Application definition
