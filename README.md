@@ -40,3 +40,4 @@ All you need to do is set the following environment variables:
 * `DISABLE_COLLECTSTATIC = 1` - For heroku config, this was required, as it doesn't even have a DB, or defined static files!
 * `django_secret_key` - because making your secret key public in GitHub is bad luck.
 * `yt_api_key` - Your [YouTube API key](https://console.cloud.google.com/apis/library/youtube.googleapis.com?q=youtube)
+* `channel_id` - Your YouTube channel id, for `/latest/` lookups, etc...

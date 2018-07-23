@@ -1,6 +1,8 @@
 from django.urls import path
 
 from . import views
+import os
+channel_id = os.environ['channel_id']
 
 urlpatterns = [
     path('', views.home, name='index'),
@@ -9,7 +11,7 @@ urlpatterns = [
     path('android', views.redirect, {"url": "https://www.youtube.com/playlist?list=PLdr1YBmf_Da8do3vXAz72j8xGChHJM-3h"}),
     path('favicon.ico', views.redirect, {"url":"https://assets.geniuslounge.com/favicon.ico"}),
     path('static/favicon.ico', views.redirect, {"url":"https://assets.geniuslounge.com/favicon.ico"}),
-    path('latest', views.redirect, {"url":"https://www.tubebuddy.com/quicknav/latest/UCU261fOCKtUwxigoCcZuVHQ"}),
+    path('latest', views.redirect, {"url":"http://"+os.environ['channel_domain']+"/"+views.latest_video(channel_id)}),
     path('feed/<slug:channel_id>', views.feed, name='feed'),
     path('live/', views.home, name='live'),
     path('live', views.home, name='live'),
