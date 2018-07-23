@@ -70,11 +70,11 @@ def request_is_live(request, video_id):
         return False
 
 
-def channel_feed(channel_id):
+def channel_feed(channel_id, number_of_feed_items=25):
     """Outputs a RFC822 compatible RSS feed for the last 25 videos from a given channel_id"""
     payload = { 'part':'snippet',
                 'channelId':channel_id,
-                'maxResults':"25",
+                'maxResults':number_of_feed_items,
                 'order':'date',
                 'type':'video',
                 'key':yt_api_key
