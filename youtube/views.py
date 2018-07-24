@@ -19,6 +19,7 @@ def index(request, video_id):
         'twitter_title' : meta['twitter_title'],
         'twitter_description' : meta['twitter_description'],
         'twitter_image' : meta['twitter_image'],
+        'channel_domain': channel_domain,
             }
     return HttpResponse(template.render(context,request))
 
