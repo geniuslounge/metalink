@@ -34,7 +34,7 @@ or your own channel: `http://geniuslounge.com/feed/{YouTube Channel ID}`
 
 
 
-All you need to do is set the following environment variables:
+All you need is `Python 3` and to set the following environment variables:
 
 * `channel_domain` - in the form of `geniuslounge.com`
 * `DISABLE_COLLECTSTATIC = 1` - For heroku config, this was required, as it doesn't even have a DB, or defined static files!
