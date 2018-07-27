@@ -52,3 +52,6 @@ def latest_video(channel_id):
     latest_video_dict = channel_feed(channel_id,1)
     video_id = latest_video_dict['items'][0]['id']['videoId']
     return video_id
+
+def image_only(request, video_id):
+   return HttpResponseRedirect(metadata(video_id)['og_image'])
