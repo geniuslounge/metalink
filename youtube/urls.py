@@ -11,7 +11,7 @@ urlpatterns = [
     path('android', views.redirect, {"url": "https://www.youtube.com/playlist?list=PLdr1YBmf_Da8do3vXAz72j8xGChHJM-3h"}),
     path('favicon.ico', views.redirect, {"url":"https://assets.geniuslounge.com/favicon.ico"}),
     path('static/favicon.ico', views.redirect, {"url":"https://assets.geniuslounge.com/favicon.ico"}),
-    path('latest', views.redirect, {"url":"http://"+os.environ['channel_domain']+"/"+views.latest_video(channel_id)}),
+    path('latest', views.latest_video),
     path('contribute', views.redirect, {"url":"http://www.youtube.com/timedtext_cs_panel?tab=2&c="+channel_id}),
     path('feed/<slug:channel_id>', views.feed, name='feed'),
     path('live/', views.home, name='live'),

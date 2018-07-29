@@ -6,6 +6,7 @@ channel_domain = os.environ['channel_domain']
 
 
 
+
 def index(request, video_id):
     meta = metadata(video_id)
     template = loader.get_template('youtube/index.html')
@@ -48,7 +49,10 @@ def feed(request, channel_id):
     return HttpResponse(template.render(context,request))
 
 
-def latest_video(channel_id):
-    latest_video_dict = channel_feed(channel_id,1)
+def latest_video(request):
+    latest_video_dict = channel_feed(os.environ['channel_id'],1)
     video_id = latest_video_dict['items'][0]['id']['videoId']
-    return video_id
+    return HttpResponseRedirect(''.join(["http://",os.environ['channel_domain'],"/",video_id]))
+
+
+
