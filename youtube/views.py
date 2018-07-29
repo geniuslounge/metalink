@@ -55,4 +55,5 @@ def latest_video(request):
     return HttpResponseRedirect(''.join(["http://",os.environ['channel_domain'],"/",video_id]))
 
 
-
+def image_only(request, video_id):
+   return HttpResponseRedirect(metadata(video_id)['og_image'])

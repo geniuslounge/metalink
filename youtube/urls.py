@@ -17,5 +17,7 @@ urlpatterns = [
     path('live/', views.home, name='live'),
     path('live', views.home, name='live'),
     path('live/<slug:video_id>', views.index, name='live'),
-    path('<slug:video_id>', views.index, name='index'), # Needs to be last so all the other possibilites can go first.
+    path('<slug:video_id>/image', views.image_only),
+    path('<slug:video_id>', views.index, name='index'),  # Needs to be last so all the other possibilites can go first.
+
 ]
