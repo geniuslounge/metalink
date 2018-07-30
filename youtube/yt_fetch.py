@@ -4,6 +4,7 @@ from youtube.dates import format_to_RFC822
 import os
 yt_api_key = os.environ['yt_api_key']
 
+
 def metadata(video_id):
     """Gets YouTube metadata for a single YouTube video"""
     payload = {'id': video_id,
@@ -107,10 +108,20 @@ def channel_info(channel_id):
     r = requests.get('https://www.googleapis.com/youtube/v3/channels', params=payload)
 
     blob = json.loads(r.text)
-
-    return {
+    return_dict = {
         'title':blob['items'][0]['snippet']['title'],
         'description':blob['items'][0]['snippet']['description'],
-        'thumbnail_url':blob['items'][0]['snippet']['thumbnails']['high']['url']
-
+        'thumbnail_url':blob['items'][0]['snippet']['thumbnails']['high']['url'],
+        'channel_id':channel_id
     }
+    if 'customUrl' in blob['items'][0]['snippet']:
+        return_dict['customUrl']=blob['items'][0]['snippet']['customUrl']
+    return return_dict
+
+
+def channel_url(channel_id):
+    channel_metadata = channel_info(channel_id)
+    if 'customUrl' in channel_metadata:
+        return ''.join(["https://www.youtube.com/c/",channel_metadata['customUrl']])
+    else:
+        return ''.join(["https://www.youtube.com/channel/",channel_metadata['channel_id']])

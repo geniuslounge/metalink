@@ -1,6 +1,6 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
-from youtube.yt_fetch import metadata, request_is_live, channel_feed, channel_info
+from youtube.yt_fetch import metadata, request_is_live, channel_feed, channel_info, channel_url
 import os
 channel_domain = os.environ['channel_domain']
 
@@ -25,15 +25,14 @@ def index(request, video_id):
     return HttpResponse(template.render(context,request))
 
 
-def home(request):
-    template = loader.get_template('youtube/home.html')
-    context = {}
-    return HttpResponse(template.render(context,request))
+def home(request, channel_id=os.environ['channel_id']):
+    
+    return HttpResponseRedirect(channel_url(channel_id))
 
 def redirect(request, url):
         return HttpResponseRedirect(url)
 
-def feed(request, channel_id):
+def feed(request, channel_id=os.environ['channel_id']):
     channel_feed_items = channel_feed(channel_id)
     channel_metadata = channel_info(channel_id)
     template = loader.get_template('youtube/feed.html')
@@ -43,7 +42,8 @@ def feed(request, channel_id):
         'channel_description': channel_metadata['description'],
         'channel_thumbnail': channel_metadata['thumbnail_url'],
         'channel_id': channel_id,
-        'channel_domain': channel_domain
+        'channel_domain': channel_domain,
+        'channel_url': channel_url(channel_id)
 
     }
     return HttpResponse(template.render(context,request))
@@ -57,3 +57,4 @@ def latest_video(request):
 
 def image_only(request, video_id):
    return HttpResponseRedirect(metadata(video_id)['og_image'])
+
