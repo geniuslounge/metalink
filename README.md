@@ -28,15 +28,16 @@ Currently designed to be deployed via [heroku](http://heroku.com), it should be 
 * Post this to Facebook: `http://geniuslounge.com/WaFMDe5cE8w`
 or try your own video: `http://geniuslounge.com/{YouTube Video ID}`
 
-* For a RSS feed: `http://geniuslounge.com/feed/UCU261fOCKtUwxigoCcZuVHQ`
-or your own channel: `http://geniuslounge.com/feed/{YouTube Channel ID}`
+* For your RSS feed: `http://geniuslounge.com/feed`
+or another YouTube channel's RSS feed: `http://geniuslounge.com/feed/{YouTube Channel ID}`
 
 
 ### Other nifty things to try
 
 * `/latest`  - Allows you to have a static link that always points to your latest video. [Our Latest video](http://geniuslounge.com/latest)
-* `/contribute` - Provides a pretty link to let your YouTube Community help with translations & transcriptions. [Help us caption](http://geniuslounge.com/contribute) 
-
+* `/contribute` - Provides a pretty link to let your YouTube Community help with translations & transcriptions. [Help us caption](http://geniuslounge.com/contribute)
+* `/feed` - (mentioned above) Provides RSS feed of your YouTube Channel
+* `/` - Redirects users to your channel (and uses your vanity URL if you have one)
 
 
 All you need is `Python 3`, a heroku account (free works, too),  and to set the following environment variables:
