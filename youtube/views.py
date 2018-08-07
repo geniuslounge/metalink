@@ -27,7 +27,7 @@ def index(request, video_id):
 
 def home(request, channel_id=os.environ['channel_id']):
     
-    return HttpResponseRedirect(channel_url(channel_id)+"/?sub_confirmation=1")
+    return HttpResponseRedirect(channel_url(channel_id))
 
 def redirect(request, url):
         return HttpResponseRedirect(url)
