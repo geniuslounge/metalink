@@ -59,6 +59,11 @@ def latest_video(request):
     video_id = latest_video_dict['items'][0]['id']['videoId']
     return HttpResponseRedirect(''.join(["http://",os.environ['channel_domain'],"/",video_id]))
 
+def latest_image(request):
+    latest_video_dict = channel_feed(os.environ['channel_id'], 1)
+    video_id = latest_video_dict['items'][0]['id']['videoId']
+    return HttpResponseRedirect(''.join(["http://", os.environ['channel_domain'], "/", video_id, '/image']))
+
 
 def image_only(request, video_id):
    return HttpResponseRedirect(metadata(video_id)['og_image'])

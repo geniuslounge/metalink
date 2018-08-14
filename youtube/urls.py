@@ -12,6 +12,7 @@ urlpatterns = [
     path('favicon.ico', views.redirect, {"url":"https://assets.geniuslounge.com/favicon.ico"}),
     path('static/favicon.ico', views.redirect, {"url":"https://assets.geniuslounge.com/favicon.ico"}),
     path('latest', views.latest_video),
+    path('latest/image',views.latest_image),
     path('contribute', views.redirect, {"url":"http://www.youtube.com/timedtext_cs_panel?tab=2&c="+channel_id}),
     path('subscribe', views.subscribe),
     path('feed', views.feed, name='feed'),
