@@ -61,7 +61,7 @@ def get_best_image(item):
     elif 'default' in item['snippet']['thumbnails']:
         return item['snippet']['thumbnails']['default']['url']
     else:
-        return "https://geniuslounge.github.io/share2/images/YouTubeLogo.png"
+        return "https://geniuslounge.github.io/metalink/images/YouTubeLogo.png"
 
 def request_is_live(request, video_id):
     """Determines is the request is coming from the /live endpoint. This affects the way the metadata is displayed for share links."""
@@ -125,3 +125,98 @@ def channel_url(channel_id):
         return ''.join(["https://www.youtube.com/c/",channel_metadata['customUrl']])
     else:
         return ''.join(["https://www.youtube.com/channel/",channel_metadata['channel_id']])
+
+
+
+def branding_settings(channel_id=os.environ['channel_id']):
+    payload = {
+        'part':'brandingSettings',
+        'id':channel_id,
+        'key':yt_api_key
+    }
+    r = requests.get('https://www.googleapis.com/youtube/v3/channels', params=payload)
+    
+    blob = json.loads(r.text)
+    
+    # blog={
+    #     "kind": "youtube#channelListResponse",
+    #   "etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/Kxm_7m7IjfohqxvNQoTq92Fkj44\"",
+    #   "pageInfo": {
+    #     "totalResults": 1,
+    #     "resultsPerPage": 1
+    #   },
+    #   "items": [
+    #     {
+    #       "kind": "youtube#channel",
+    #       "etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/YWcLxiRhr1-6mJf-rxQnPDMTN14\"",
+    #       "id": "UCU261fOCKtUwxigoCcZuVHQ",
+    #       "brandingSettings": {
+    #         "channel": {
+    #           "title": "Genius Lounge",
+    #           "description": "Free training for the tech in your life. \nWe provide free training for your iPhone, Android, and a bunch more! Maybe you're new to your device, or perhaps you want to learn those cool tricks to show your friends. Check us out to learn a little more about the tech you already own. Unleash your inner Genius and join us in the Genius Lounge.",
+    #           "keywords": "\"Genius Lounge\" GeniusLounge tech training iOS Android Apple \"iPhone help\" \"iPhone for beginners\" \"iPad for Beginners\" \"Free tech training\"",
+    #           "defaultTab": "Featured",
+    #           "trackingAnalyticsAccountId": "UA-113382064-1",
+    #           "moderateComments": True,
+    #           "showRelatedChannels": True,
+    #           "showBrowseView": True,
+    #           "unsubscribedTrailer": "5VbI9ruv3co",
+    #           "profileColor": "#000000",
+    #           "country": "US"
+    #         },
+    #         "image": {
+    #           "bannerImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1060-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+    #           "bannerMobileImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+    #           "bannerTabletLowImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1138-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+    #           "bannerTabletImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1707-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+    #           "bannerTabletHdImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w2276-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+    #           "bannerTabletExtraHdImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w2560-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+    #           "bannerMobileLowImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w320-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+    #           "bannerMobileMediumHdImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w960-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+    #           "bannerMobileHdImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1280-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+    #           "bannerMobileExtraHdImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1440-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+    #           # "bannerTvImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w2120-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+    #           # "bannerTvLowImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w854-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+    #           # "bannerTvMediumImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1280-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+    #           # "bannerTvHighImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1920-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no"
+    #         },
+    #         "hints": [
+    #           {
+    #             "property": "channel.featured_tab.template.string",
+    #             "value": "Everything"
+    #           },
+    #           {
+    #             "property": "channel.modules.show_comments.bool",
+    #             "value": "True"
+    #           },
+    #           {
+    #             "property": "channel.banner.mobile.medium.image.url",
+    #             "value": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no"
+    #           }
+    #         ]
+    #       }
+    #     }
+    #   ]
+    # }
+    channel_branding_settings = blob['items'][0]['brandingSettings']
+    if 'bannerTvImageUrl' in channel_branding_settings['image']:
+        bestimage = channel_branding_settings['image']['bannerTvImageUrl']
+    elif 'bannerTvHighImageUrl' in channel_branding_settings['image']:
+        bestimage = channel_branding_settings['image']['bannerTvHighImageUrl']
+    elif 'bannerTvMediumImageUrl' in channel_branding_settings['image']:
+        bestimage = channel_branding_settings['image']['bannerTvMediumImageUrl']
+    elif 'bannerTvLowImageUrl' in channel_branding_settings['image']:
+        bestimage = channel_branding_settings['image']['bannerTvLowImageUrl']
+    else:
+        bestimage='https://geniuslounge.github.io/metalink/images/YouTubeLogo.png'
+
+    
+        
+    
+    return_dict = {
+        'url':channel_url(channel_id),
+        'image':bestimage,
+        'title':channel_branding_settings['channel']['title'],
+        'description':channel_branding_settings['channel']['description']
+    }
+    return return_dict

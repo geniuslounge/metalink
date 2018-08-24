@@ -1,6 +1,6 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
-from youtube.yt_fetch import metadata, request_is_live, channel_feed, channel_info, channel_url
+from youtube.yt_fetch import metadata, request_is_live, channel_feed, channel_info, channel_url, branding_settings
 import os
 channel_domain = os.environ['channel_domain']
 
@@ -27,6 +27,16 @@ def index(request, video_id):
 
 
 def home(request, channel_id=os.environ['channel_id']):
+    my_channel= branding_settings(channel_id)
+    template = loader.get_template('youtube/home.html')
+    context = {
+        'url': channel_url(channel_id),
+        'title':my_channel['title'],
+        'description':my_channel['description'],
+        'image':my_channel['image'],
+        'domain':channel_domain
+        }
+    return HttpResponse(template.render(context,request))
     
     return HttpResponseRedirect(channel_url(channel_id))
 
@@ -68,3 +78,5 @@ def latest_image(request):
 def image_only(request, video_id):
    return HttpResponseRedirect(metadata(video_id)['og_image'])
 
+if __name__ == '__main__':
+    home()
