@@ -8,20 +8,19 @@
 <noscript><meta http-equiv="refresh" content="0; {{ url }}"></noscript>
  <meta content="http://www.{{ domain }}/" property="og:url"/>
 <!-- redirect logic -->
-<meta content="{{ description }}." property="og:description"/>
+<meta content="{{ description }}" property="og:description"/>
 <meta content="{{ description }}" name="twitter:description"/>
+<meta name="description" content="{{ description }}">
 
-{{ title }}
+
+<title>{{ title }}</title>
 <meta content="{{ title }}" property="og:title">
 <meta content="{{ title }}" name="twitter:title"/>
 
 <meta content="{{ image }}" property="og:image"/>
 <meta content="{{ image }}" name="twitter:image"/>
 
-{#<meta content="http://assets.geniuslounge.com/apple-touch-icon.png" property="og:icon"/>#}
 <meta content="summary_large_image" name="twitter:card"/>
-{#<meta content="@geniuslounge" name="twitter:site"/>#}
-{#<meta content="@geniuslounge" name="twitter:creator"/>#}
 </head>
 <body>
 </body>
