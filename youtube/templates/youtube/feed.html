@@ -9,6 +9,7 @@
     <title>{{ x.snippet.title }}</title>
     <link>http://{{ channel_domain }}/{{ x.id.videoId }}</link>
     <enclosure url="{{ x.snippet.best_image }}" length="1000000" type="image/jpeg" />
+    <media:content url="{{ x.snippet.best_image }}" type="image/jpeg" />
     <pubDate>{{ x.snippet.pubDate }}</pubDate>
     <guid isPermaLink="false">{{ x.id.videoId }}</guid>
     <description>{{ x.snippet.description }}</description>
