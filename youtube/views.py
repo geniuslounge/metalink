@@ -38,7 +38,7 @@ def home(request, channel_id=os.environ['channel_id']):
         }
     return HttpResponse(template.render(context,request))
     
-    return HttpResponseRedirect(channel_url(channel_id))
+    # return HttpResponseRedirect(channel_url(channel_id))
 
 def subscribe(request, channel_id=os.environ['channel_id']):
     sub_link = ''.join([channel_url(channel_id),'/?sub_confirmation=1'])
@@ -77,6 +77,11 @@ def latest_image(request):
 
 def image_only(request, video_id):
    return HttpResponseRedirect(metadata(video_id)['og_image'])
+
+def channel_banner_image(request, channel_id=os.environ['channel_id']):
+    return HttpResponseRedirect(branding_settings(channel_id)['image'])
+    
+    
 
 if __name__ == '__main__':
     home()

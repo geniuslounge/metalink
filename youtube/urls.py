@@ -17,6 +17,8 @@ urlpatterns = [
     path('subscribe', views.subscribe),
     path('feed', views.feed, name='feed'),
     path('feed/<slug:channel_id>', views.feed, name='feed'),
+    path('<slug:channel_id>/banner', views.channel_banner_image, name='header_image'),
+    path('banner', views.channel_banner_image, name='header_image'),
     path('live/', views.home, name='live'),
     path('live', views.home, name='live'),
     path('live/<slug:video_id>', views.index, name='live'),
