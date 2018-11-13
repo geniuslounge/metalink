@@ -210,12 +210,23 @@ def branding_settings(channel_id=os.environ['channel_id']):
     else:
         bestimage='https://geniuslounge.github.io/metalink/images/YouTubeLogo.png'
 
+    if 'bannerMobileExtraHdImageUrl' in channel_branding_settings['image']:
+        mobile_banner = channel_branding_settings['image']['bannerMobileExtraHdImageUrl']
+    elif 'bannerMobileHdImageUrl' in channel_branding_settings['image']:
+        mobile_banner = channel_branding_settings['image']['bannerMobileHdImageUrl']
+    elif 'bannerMobileMediumHdImageUrl' in channel_branding_settings['image']:
+        mobile_banner = channel_branding_settings['image']['bannerMobileMediumHdImageUrl']
+    elif 'bannerMobileLowImageUrl' in channel_branding_settings['image']:
+        mobile_banner = channel_branding_settings['image']['bannerMobileLowImageUrl']
+    else:
+        mobile_banner='https://geniuslounge.github.io/metalink/images/YouTubeLogo.png'
     
         
     
     return_dict = {
         'url':channel_url(channel_id),
         'image':bestimage,
+        'mobile_banner':mobile_banner,
         'title':channel_branding_settings['channel']['title'],
         'description':channel_branding_settings['channel']['description']
     }

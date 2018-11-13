@@ -78,8 +78,8 @@ def latest_image(request):
 def image_only(request, video_id):
    return HttpResponseRedirect(metadata(video_id)['og_image'])
 
-def channel_banner_image(request, channel_id=os.environ['channel_id']):
-    return HttpResponseRedirect(branding_settings(channel_id)['image'])
+def mobile_banner_image(request, channel_id=os.environ['channel_id']):
+    return HttpResponseRedirect(branding_settings(channel_id)['mobile_banner'])
     
     
 
