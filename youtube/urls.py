@@ -5,6 +5,7 @@ import os
 channel_id = os.environ['channel_id']
 
 urlpatterns = [
+    path('giftguide', views.gift_guide, name='giftguide'),
     path('', views.home, name='home'),
     path('clutterfree', views.redirect, {"url": "https://www.youtube.com/playlist?list=PLdr1YBmf_Da8dCv6FJ9cYWsrOxeqCVIrQ"}),
     path('clutter-free', views.redirect,{"url": "https://www.youtube.com/playlist?list=PLdr1YBmf_Da8dCv6FJ9cYWsrOxeqCVIrQ"}),

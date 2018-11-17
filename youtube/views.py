@@ -24,7 +24,22 @@ def index(request, video_id):
             }
     return HttpResponse(template.render(context,request))
 
-
+def gift_guide(request, video_id="5VbI9ruv3co"):
+    meta = metadata(video_id)
+    template = loader.get_template('youtube/Holiday_Gift_Guide.html')
+    context = {
+        'live': str(request_is_live(request.path, video_id)),
+        'channel_name' : meta['channel_name'],
+        'video_id' : meta['video_id'],
+        'og_title' : meta['og_title'],
+        'og_image' : meta['og_image'],
+        'og_description' : meta['og_description'],
+        'twitter_title' : meta['twitter_title'],
+        'twitter_description' : meta['twitter_description'],
+        'twitter_image' : meta['twitter_image'],
+        'channel_domain': channel_domain,
+            }
+    return HttpResponse(template.render(context,request))
 
 def home(request, channel_id=os.environ['channel_id']):
     my_channel= branding_settings(channel_id)
