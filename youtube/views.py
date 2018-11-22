@@ -24,7 +24,7 @@ def index(request, video_id):
             }
     return HttpResponse(template.render(context,request))
 
-def gift_guide(request, video_id="5VbI9ruv3co"):
+def gift_guide(request, video_id="PzIghuJoC8I"):
     meta = metadata(video_id)
     template = loader.get_template('youtube/Holiday_Gift_Guide.html')
     context = {
