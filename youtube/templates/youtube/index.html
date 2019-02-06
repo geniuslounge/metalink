@@ -12,7 +12,12 @@
 <meta name="msapplication-TileColor" content="#2d89ef">
 <meta name="msapplication-config" content="https://assets.geniuslounge.com/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
-
+{% if og_description %}
+<meta name="description" content="{{ og_description }}">
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}">
+{% endif %}
 
     {% if video_id %}
     <!-- redirect logic -->

@@ -15,6 +15,7 @@ def metadata(video_id):
     r = requests.get('https://www.googleapis.com/youtube/v3/videos', params=payload)
     blob = json.loads(r.text)
     item = blob['items'][0]
+    keyword_string = ', '.join(item['snippet']['tags'])
 
     return {'channel_name' : item['snippet']['channelTitle'],
         'video_id': video_id,
@@ -23,7 +24,8 @@ def metadata(video_id):
         'og_description': item['snippet']['description'],
         'twitter_title': item['snippet']['title'],
         'twitter_description': item['snippet']['description'],
-        'twitter_image': get_best_image(item)
+        'twitter_image': get_best_image(item),
+        'keywords': keyword_string
             }
 
 def multi_metadata(video_id_list):
