@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-{% if og_title %} <title>{{ og_title }}</title> {% endif %}
+{% if og_title %}<title>{{ og_title }}</title> {% endif %}
 <link rel="apple-touch-icon" sizes="180x180" href="https://assets.geniuslounge.com/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://assets.geniuslounge.com/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://assets.geniuslounge.com/favicon-16x16.png">
@@ -18,9 +17,8 @@
 {% if keywords %}
 <meta name="keywords" content="{{ keywords }}">
 {% endif %}
-
-    {% if video_id %}
-    <!-- redirect logic -->
+{% if video_id %}
+<!-- redirect logic -->
 <script>
  window.location.replace("https://www.youtube.com/watch?v={{ video_id }}")
 </script>
