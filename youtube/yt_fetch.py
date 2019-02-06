@@ -233,3 +233,22 @@ def branding_settings(channel_id=os.environ['channel_id']):
         'description':channel_branding_settings['channel']['description']
     }
     return return_dict
+
+def sitemap(channel_id=os.environ['channel_id']):
+    payload = {
+        'part': 'snippet',
+        'id': channel_id,
+        'key': yt_api_key,
+        'maxResults': '50',
+        'order':'date',
+        'channelId': channel_id,
+        'type':'video'
+    }
+    r = requests.get('https://www.googleapis.com/youtube/v3/search', params=payload)
+    
+    blob = json.loads(r.text)
+    sitemap_info = []
+    for x in blob['items']:
+        sitemap_info.append(''.join(['http://', os.environ['channel_domain'],'/',x['id']['videoId']]))
+    return sitemap_info
+

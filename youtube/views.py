@@ -1,6 +1,6 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
-from youtube.yt_fetch import metadata, request_is_live, channel_feed, channel_info, channel_url, branding_settings
+from youtube.yt_fetch import metadata, request_is_live, channel_feed, channel_info, channel_url, branding_settings, sitemap
 import os
 channel_domain = os.environ['channel_domain']
 
@@ -79,6 +79,17 @@ def feed(request, channel_id=os.environ['channel_id']):
     }
     return HttpResponse(template.render(context,request))
 
+def sitemap_render(request, channel_id=os.environ['channel_id']):
+    sitemap_urls = sitemap(channel_id)
+    template = loader.get_template('youtube/sitemap.xml')
+    context = {
+        'sitemapinfo':sitemap_urls
+    }
+    return HttpResponse(template.render(context,request))
+    
+    
+
+
 
 def latest_video(request):
     latest_video_dict = channel_feed(os.environ['channel_id'],1)
@@ -96,7 +107,7 @@ def image_only(request, video_id):
 
 def mobile_banner_image(request, channel_id=os.environ['channel_id']):
     return HttpResponseRedirect(branding_settings(channel_id)['mobile_banner'])
-    
+
     
 
 if __name__ == '__main__':

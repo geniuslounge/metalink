@@ -17,6 +17,7 @@ urlpatterns = [
     path('contribute', views.redirect, {"url":"http://www.youtube.com/timedtext_cs_panel?tab=2&c="+channel_id}),
     path('subscribe', views.subscribe),
     path('feed', views.feed, name='feed'),
+    path('sitemap.xml',views.sitemap_render, name='sitemap'),
     path('feed/<slug:channel_id>', views.feed, name='feed'),
     path('<slug:channel_id>/mobile_banner', views.mobile_banner_image, name='header_image'),
     path('mobile_banner', views.mobile_banner_image, name='header_image'),
