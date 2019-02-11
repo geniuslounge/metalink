@@ -15,7 +15,10 @@ def metadata(video_id):
     r = requests.get('https://www.googleapis.com/youtube/v3/videos', params=payload)
     blob = json.loads(r.text)
     item = blob['items'][0]
-    keyword_string = ', '.join(item['snippet']['tags'])
+    try:
+        keyword_string = ', '.join(item['snippet']['tags'])
+    except:
+        keyword_string = ''
 
     return {'channel_name' : item['snippet']['channelTitle'],
         'video_id': video_id,
