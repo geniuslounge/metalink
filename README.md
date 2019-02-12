@@ -34,13 +34,17 @@ or another YouTube channel's RSS feed: `http://geniuslounge.com/feed/{YouTube Ch
 
 ### Other nifty things to try
 
+* `/` - Redirects users to your channel (and uses your vanity URL if you have one)
 * `/latest`  - Allows you to have a static link that always points to your latest video. [Our Latest video](http://geniuslounge.com/latest)
+* `/latest/image` - Provides the thumbnail to the latest video.
+* `/<video_id>/image` - Provides the image for the video_id
 * `/contribute` - Provides a pretty link to let your YouTube Community help with translations & transcriptions. [Help us caption](http://geniuslounge.com/contribute)
 * `/feed` - (mentioned above) Provides RSS feed of your YouTube Channel
-* `/` - Redirects users to your channel (and uses your vanity URL if you have one)
+* `/sitemap.xml` - Generates a sitemap of the last 50 videos from your feed
+* `/subscribe` - takes users to your subscribe link, prompting them to subscribe if they haven't already
 
 
-All you need is `Python 3`, a heroku account (free works, too),  and to set the following environment variables:
+All you need is `Python 3`, a heroku account (Free level is fine),  and to set the following environment variables:
 
 * `channel_domain` - in the form of `geniuslounge.com`
 * `DISABLE_COLLECTSTATIC = 1` - For heroku config, this was required, as it doesn't even have a DB, or defined static files!
