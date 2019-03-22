@@ -32,7 +32,7 @@ def metadata(video_id):
             }
 
 def multi_metadata(video_id_list):
-    """Gets YouTube metadata for a single YouTube video"""
+    """Gets YouTube metadata for a list of YouTube videos"""
     
     video_id_list = ",".join(video_id_list)
     payload = {'id': video_id_list,
@@ -76,28 +76,57 @@ def request_is_live(request, video_id):
         return False
 
 
+def get_upload_playlist_for_channel(channel_id=os.environ['channel_id']):
+    """Gets the upload playlist for the given channel"""
+    url = "https://www.googleapis.com/youtube/v3/channels"
+    
+    querystring = {"key": yt_api_key,
+                   "part": "contentDetails",
+                   "id": channel_id}
+    
+    
+    response = requests.request("GET", url, params=querystring)
+    results = json.loads(response.text)
+    playlist = results["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
+    return playlist
+
+def latest_video_id(channel_id=os.environ['channel_id']):
+    """Gets the latest video given the channel_id"""
+    url = "https://www.googleapis.com/youtube/v3/playlistItems"
+
+    querystring = {"key": yt_api_key, "part": "snippet,contentDetails",
+                   "playlistId": get_upload_playlist_for_channel(channel_id),
+                   "maxResults": "1"}
+
+    response = requests.request("GET", url, params=querystring)
+    
+    results = json.loads(response.text)
+    vidId = results['items'][0]['contentDetails']['videoId']
+    return vidId
+    
+    
+
+
 def channel_feed(channel_id, number_of_feed_items=25):
     """Outputs a RFC822 compatible RSS feed for the last 25 videos from a given channel_id"""
     payload = { 'part':'snippet',
-                'channelId':channel_id,
+                'playlistId':get_upload_playlist_for_channel(channel_id),
                 'maxResults':number_of_feed_items,
-                'order':'date',
-                'type':'video',
                 'key':yt_api_key
     }
 
-    r = requests.get('https://www.googleapis.com/youtube/v3/search', params=payload)
+    r = requests.get('https://www.googleapis.com/youtube/v3/playlistItems', params=payload)
     results_of_search = json.loads(r.text)
     video_list = []
     for video in results_of_search['items']:
-        video_list.append(video['id']['videoId'])
+        video_list.append(video['snippet']['resourceId']['videoId'])
     
     image_dict = get_multiple_best_images(multi_metadata(video_list))
-    
 
     for x in results_of_search['items']:
+        #These lines add keys to the dictionary that get parsed later
         x['snippet']['pubDate'] = format_to_RFC822(x['snippet']['publishedAt'])
-        vid_id = x['id']['videoId']
+        vid_id = x['snippet']['resourceId']['videoId']
         x['snippet']['best_image'] = image_dict[vid_id]
 
     return results_of_search
@@ -143,66 +172,6 @@ def branding_settings(channel_id=os.environ['channel_id']):
     
     blob = json.loads(r.text)
     
-    # blog={
-    #     "kind": "youtube#channelListResponse",
-    #   "etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/Kxm_7m7IjfohqxvNQoTq92Fkj44\"",
-    #   "pageInfo": {
-    #     "totalResults": 1,
-    #     "resultsPerPage": 1
-    #   },
-    #   "items": [
-    #     {
-    #       "kind": "youtube#channel",
-    #       "etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/YWcLxiRhr1-6mJf-rxQnPDMTN14\"",
-    #       "id": "UCU261fOCKtUwxigoCcZuVHQ",
-    #       "brandingSettings": {
-    #         "channel": {
-    #           "title": "Genius Lounge",
-    #           "description": "Free training for the tech in your life. \nWe provide free training for your iPhone, Android, and a bunch more! Maybe you're new to your device, or perhaps you want to learn those cool tricks to show your friends. Check us out to learn a little more about the tech you already own. Unleash your inner Genius and join us in the Genius Lounge.",
-    #           "keywords": "\"Genius Lounge\" GeniusLounge tech training iOS Android Apple \"iPhone help\" \"iPhone for beginners\" \"iPad for Beginners\" \"Free tech training\"",
-    #           "defaultTab": "Featured",
-    #           "trackingAnalyticsAccountId": "UA-113382064-1",
-    #           "moderateComments": True,
-    #           "showRelatedChannels": True,
-    #           "showBrowseView": True,
-    #           "unsubscribedTrailer": "5VbI9ruv3co",
-    #           "profileColor": "#000000",
-    #           "country": "US"
-    #         },
-    #         "image": {
-    #           "bannerImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1060-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
-    #           "bannerMobileImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
-    #           "bannerTabletLowImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1138-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
-    #           "bannerTabletImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1707-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
-    #           "bannerTabletHdImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w2276-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
-    #           "bannerTabletExtraHdImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w2560-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
-    #           "bannerMobileLowImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w320-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
-    #           "bannerMobileMediumHdImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w960-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
-    #           "bannerMobileHdImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1280-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
-    #           "bannerMobileExtraHdImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1440-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
-    #           # "bannerTvImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w2120-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
-    #           # "bannerTvLowImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w854-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
-    #           # "bannerTvMediumImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1280-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
-    #           # "bannerTvHighImageUrl": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w1920-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no"
-    #         },
-    #         "hints": [
-    #           {
-    #             "property": "channel.featured_tab.template.string",
-    #             "value": "Everything"
-    #           },
-    #           {
-    #             "property": "channel.modules.show_comments.bool",
-    #             "value": "True"
-    #           },
-    #           {
-    #             "property": "channel.banner.mobile.medium.image.url",
-    #             "value": "https://yt3.ggpht.com/O3MpsaRIBlZ452Ej7Q5mW_O1G5SZgExAuuJVRJ_N27uRpI6nNIEgFZNG9dcvKTSdMKRyBFh6LOU=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no"
-    #           }
-    #         ]
-    #       }
-    #     }
-    #   ]
-    # }
     channel_branding_settings = blob['items'][0]['brandingSettings']
     if 'bannerTvImageUrl' in channel_branding_settings['image']:
         bestimage = channel_branding_settings['image']['bannerTvImageUrl']
@@ -255,3 +224,5 @@ def sitemap(channel_id=os.environ['channel_id']):
         sitemap_info.append(''.join(['http://www.', os.environ['channel_domain'],'/',x['id']['videoId']]))
     return sitemap_info
 
+if __name__ == '__main__':
+    get_upload_playlist_for_channel("UCU261fOCKtUwxigoCcZuVHQ")
