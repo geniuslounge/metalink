@@ -91,12 +91,12 @@ def sitemap_render(request, channel_id=os.environ['channel_id']):
 
 
 
-def latest_video(request):
-    video_id = latest_video_id()
+def latest_video(request,channel_id=os.environ['channel_id']):
+    video_id = latest_video_id(channel_id)
     return HttpResponseRedirect(''.join(["http://",os.environ['channel_domain'],"/",video_id]))
 
-def latest_image(request):
-    video_id = latest_video_id()
+def latest_image(request,channel_id=os.environ['channel_id']):
+    video_id = latest_video_id(channel_id)
     return HttpResponseRedirect(''.join(["http://", os.environ['channel_domain'], "/", video_id, '/image']))
 
 
