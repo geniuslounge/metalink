@@ -5,7 +5,6 @@ import os
 channel_id = os.environ['channel_id']
 
 urlpatterns = [
-    path('giftguide', views.gift_guide, name='giftguide'),
     path('', views.home, name='home'),
     path('favicon.ico', views.redirect, {"url":"https://assets.geniuslounge.com/favicon.ico"}),
     path('static/favicon.ico', views.redirect, {"url":"https://assets.geniuslounge.com/favicon.ico"}),
@@ -24,3 +23,8 @@ urlpatterns = [
     path('<slug:video_id>', views.index, name='index'),  # Needs to be last so all the other possibilities can go first.
 
 ]
+
+
+# Adding this so that any forks don't have to host the gift guide
+if os.environ['channel_id'] == "UCU261fOCKtUwxigoCcZuVHQ":
+    urlpatterns.insert(0,path('giftguide', views.gift_guide, name='giftguide'))
