@@ -28,3 +28,4 @@ urlpatterns = [
 # Adding this so that any forks don't have to host the gift guide
 if os.environ['channel_id'] == "UCU261fOCKtUwxigoCcZuVHQ":
     urlpatterns.insert(0,path('giftguide', views.gift_guide, name='giftguide'))
+    urlpatterns.insert(1,path('signup', views.redirect, {"url":"https://mailchi.mp/6d86f6b443e9/geniuslounge"}))
