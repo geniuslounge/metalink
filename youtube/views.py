@@ -105,3 +105,20 @@ def image_only(request, video_id):
 
 def mobile_banner_image(request, channel_id=os.environ['channel_id']):
     return HttpResponseRedirect(branding_settings(channel_id)['mobile_banner'])
+
+def video_page(request, video_id):
+    meta = metadata(video_id)
+    template = loader.get_template('youtube/video_page.html')
+    context = {
+        'channel_name' : meta['channel_name'],
+        'video_id' : meta['video_id'],
+        'og_title' : meta['og_title'],
+        'og_image' : meta['og_image'],
+        'og_description' : meta['og_description'],
+        'twitter_title' : meta['twitter_title'],
+        'twitter_description' : meta['twitter_description'],
+        'twitter_image' : meta['twitter_image'],
+        'channel_domain': channel_domain,
+        'keywords': meta['keywords']
+            }
+    return HttpResponse(template.render(context,request))

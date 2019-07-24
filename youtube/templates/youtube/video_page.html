@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta content="{{ og_title }}" property="og:title"/>
+    <meta content="http://www.geniuslounge.com/{{ video_id }}/image" property="og:image"/>
+    <meta content="{{ og_description }}" property="og:description"/>
+    <meta content="summary_large_image" name="twitter:card"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ og_title }}</title>
+
+    <style>
+        button{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body style="margin: 20px">
+<h1 style="text-align: center; padding-top: 20px">{{ channel_name }}</h1>
+<h2 style="text-align: center">{{ og_title }}</h2>
+<div style="text-align: center; margin: 10px">
+    <div style="display: inline-block;width: 50%" class="embed-responsive embed-responsive-16by9">
+       <iframe width="1920" height="1080" src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+
+
+
+</body>
+
+</html>

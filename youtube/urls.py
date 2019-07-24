@@ -20,6 +20,7 @@ urlpatterns = [
     path('channel/<slug:channel_id>/feed', views.feed, name='feed'),
     path('channel/<slug:channel_id>/mobile_banner', views.mobile_banner_image, name='header_image'),
     path('<slug:video_id>/image', views.image_only),
+    path('<slug:video_id>/page', views.video_page),
     path('<slug:video_id>', views.index, name='index'),  # Needs to be last so all the other possibilities can go first.
 
 ]
