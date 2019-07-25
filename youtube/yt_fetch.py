@@ -28,7 +28,8 @@ def metadata(video_id):
         'twitter_title': item['snippet']['title'],
         'twitter_description': item['snippet']['description'],
         'twitter_image': get_best_image(item),
-        'keywords': keyword_string
+        'keywords': keyword_string,
+        'channel_id': item['snippet']['channelId']
             }
 
 def multi_metadata(video_id_list):
@@ -224,5 +225,19 @@ def sitemap(channel_id=os.environ['channel_id']):
         sitemap_info.append(''.join(['http://www.', os.environ['channel_domain'],'/',x['id']['videoId']]))
     return sitemap_info
 
+def get_channel_logo(channel_id=os.environ['channel_id']):
+    payload = {
+        'part': 'snippet',
+        'id' : channel_id,
+        'key': yt_api_key,
+    }
+    r = requests.get('https://www.googleapis.com/youtube/v3/channels', params=payload)
+    blob = json.loads(r.text)
+    thumbnail = blob['items'][0]['snippet']['thumbnails']['medium']['url']
+    return thumbnail
+
 if __name__ == '__main__':
-    get_upload_playlist_for_channel("UCU261fOCKtUwxigoCcZuVHQ")
+    # get_upload_playlist_for_channel("UCU261fOCKtUwxigoCcZuVHQ")
+    # get_channel_logo()
+    # metadata(video_id='wTgOe2aH6IU')
+    pass

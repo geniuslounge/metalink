@@ -1,6 +1,6 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
-from youtube.yt_fetch import metadata, request_is_live, channel_feed, channel_info, channel_url, branding_settings, sitemap, latest_video_id
+from youtube.yt_fetch import metadata, request_is_live, channel_feed, channel_info, channel_url, branding_settings, sitemap, latest_video_id, get_channel_logo
 import os
 channel_domain = os.environ['channel_domain']
 
@@ -108,8 +108,10 @@ def mobile_banner_image(request, channel_id=os.environ['channel_id']):
 
 def video_page(request, video_id):
     meta = metadata(video_id)
+    channel_logo = get_channel_logo(channel_id=meta['channel_id'])
     template = loader.get_template('youtube/video_page.html')
     context = {
+        'channel_logo' : channel_logo,
         'channel_name' : meta['channel_name'],
         'video_id' : meta['video_id'],
         'og_title' : meta['og_title'],
