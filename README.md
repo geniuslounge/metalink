@@ -28,8 +28,8 @@ Currently designed to be deployed via [heroku](http://heroku.com), it should be 
 * Post this to Facebook: `http://geniuslounge.com/WaFMDe5cE8w`
 or try your own video: `http://geniuslounge.com/{YouTube Video ID}`
 
-* For your RSS feed: `http://geniuslounge.com/feed`
-or another YouTube channel's RSS feed: `http://geniuslounge.com/feed/{YouTube Channel ID}`
+* For our RSS feed: `http://geniuslounge.com/feed`
+or another YouTube channel's RSS feed: `http://geniuslounge.com/channel/{YouTube Channel ID}/feed`
 
 
 ### Other nifty things to try
@@ -43,6 +43,13 @@ or another YouTube channel's RSS feed: `http://geniuslounge.com/feed/{YouTube Ch
 * `/sitemap.xml` - Generates a sitemap of the last 50 videos from your feed
 * `/subscribe` - takes users to your subscribe link, prompting them to subscribe if they haven't already
 
+### Channel specific links
+#### Test these for your own channel
+*  `http://geniuslounge.com/channel/{YouTube Channel ID}`
+* `http://geniuslounge.com/channel/{YouTube Channel ID}/latest`
+* `http://geniuslounge.com/channel/{YouTube Channel ID}/latest/image`
+* `http://geniuslounge.com/channel/{YouTube Channel ID}/feed`
+* `http://geniuslounge.com/channel/{YouTube Channel ID}/mobile_banner`
 
 All you need is `Python 3`, a heroku account (Free level is fine),  and to set the following environment variables:
 
