@@ -2,10 +2,41 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <meta content="{{ og_title }}" property="og:title"/>
-    <meta content="http://www.geniuslounge.com/{{ video_id }}/image" property="og:image"/>
-    <meta content="{{ og_description }}" property="og:description"/>
+
+    <!-- Open Graph Title -->
+{% if og_title %}
+    <meta content="{% autoescape on %}{% if live == "True" %}🔴🎥 {{ channel_name }} LIVE: {% endif %}{{ og_title }}{% endautoescape %}" property="og:title"/>
+{% endif %}
+
+<!-- Open Graph Image -->
+{% if og_image %}
+    <meta content="{{ og_image }}" property="og:image"/>
+{% endif %}
+
+<!-- Open Graph Description -->
+{% if og_description %}
+    <meta content="{% autoescape on %}{{ og_description }}{% endautoescape %}" property="og:description"/>
+{% endif %}
+
+<!-- Open Graph Icon -->
+{% if og_icon %}
+    <meta content="{{ og_icon }}" property="og:icon"/>
+{% endif %}
+
+<!-- Twitter Title -->
+{% if twitter_title %}
+    <meta content="{% autoescape on %}{% if live == "True" %}🔴🎥 {{ channel_name }} LIVE: {% endif %}{{ twitter_title }}{% endautoescape %}" name="twitter:title"/>
+{% endif %}
+
+<!-- Twitter Description -->
+{% if twitter_description %}
+    <meta content="{% autoescape on %}{{ twitter_description }}{% endautoescape %}" name="twitter:description"/>
+{% endif %}
+
+
     <meta content="summary_large_image" name="twitter:card"/>
+{#    <meta content="@geniuslounge" name="twitter:site"/>#}
+{#    <meta content="@geniuslounge" name="twitter:creator"/>#}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ og_title }}</title>
@@ -14,11 +45,19 @@
         button{
             margin: 20px;
         }
+        #logo{
+              border-radius: 50%;
+        }
+        .float-left{
+            float: right;
+        }
+
     </style>
 </head>
 <body style="margin: 20px">
-<h1 style="text-align: center; padding-top: 20px">{{ channel_name }}</h1>
-<h2 style="text-align: center">{{ og_title }}</h2>
+<img id=logo src="{{ channel_logo }}" height="120px" width="120px" alt="">
+<h1 class="float-left" style="text-align: center; padding-top: 20px">{{ channel_name }}</h1>
+<h2 class="float-left" style="text-align: center">{{ og_title }}</h2>
 <div style="text-align: center; margin: 10px">
     <div style="display: inline-block;width: 50%" class="embed-responsive embed-responsive-16by9">
        <iframe width="1920" height="1080" src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
