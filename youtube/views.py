@@ -25,7 +25,10 @@ def index(request, video_id):
         'channel_domain': channel_domain,
         'keywords': meta['keywords']
             }
-    fb_scrape(request.get_raw_uri())
+    try:
+        fb_scrape(request.get_raw_uri())
+    except:
+        NameError("fb_access_token doen't appear to be defined")
     return HttpResponse(template.render(context,request))
 
 def gift_guide(request, video_id="PzIghuJoC8I"):
