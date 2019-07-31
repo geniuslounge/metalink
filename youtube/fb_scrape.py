@@ -1,8 +1,8 @@
 import requests
 import os
+import asyncio
 
-
-def fb_scrape(url_to_scrape):
+async def fb_scrape(url_to_scrape):
     payload = {
         'id': url_to_scrape,
         'scrape':'true',
