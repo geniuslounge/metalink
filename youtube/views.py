@@ -2,6 +2,8 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
 from youtube.yt_fetch import metadata, request_is_live, channel_feed, channel_info, channel_url, branding_settings, sitemap, latest_video_id
 import os
+from youtube.fb_scrape import fb_scrape
+
 channel_domain = os.environ['channel_domain']
 
 
@@ -23,6 +25,7 @@ def index(request, video_id):
         'channel_domain': channel_domain,
         'keywords': meta['keywords']
             }
+    fb_scrape(request.get_raw_uri())
     return HttpResponse(template.render(context,request))
 
 def gift_guide(request, video_id="PzIghuJoC8I"):
