@@ -27,7 +27,9 @@ def index(request, video_id):
             }
     try:
         to_scrape = ''.join((request.scheme,'://',channel_domain,request.get_full_path(force_append_slash=False)))
-        print(to_scrape)
+        print("********")
+        print("URL to scrape: ",to_scrape)
+        print("********")
         fb_scrape(to_scrape)
     except:
         NameError("fb_access_token doen't appear to be defined")
