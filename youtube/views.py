@@ -27,6 +27,7 @@ def index(request, video_id):
             }
     try:
         fb_scrape(request.get_raw_uri())
+        print(request.get_raw_uri())
     except:
         NameError("fb_access_token doen't appear to be defined")
     return HttpResponse(template.render(context,request))
