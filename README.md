@@ -1,4 +1,4 @@
-<img src="https://geniuslounge.github.io/metalink/images/gllogo.png" width=150px> </img>
+<img src="https://s.gravatar.com/avatar/b9d6859916139942340c91db0a503bfc.png?s=300" width=150px> </img>
 
 # MetaLink
 
