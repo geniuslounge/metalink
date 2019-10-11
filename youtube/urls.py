@@ -30,3 +30,4 @@ if os.environ['channel_id'] == "UCU261fOCKtUwxigoCcZuVHQ":
     urlpatterns.insert(0,path('giftguide', views.gift_guide, name='giftguide'))
     urlpatterns.insert(1,path('signup', views.redirect, {"url":"https://mailchi.mp/6d86f6b443e9/geniuslounge"}))
     urlpatterns.insert(1,path('contact',views.redirect, {"url":"https://forms.gle/evG7D1KpJB8XiZyG7"}))
+    urlpatterns.insert(1,path('update',views.redirect, {"url": "https://geniuslounge.com/OzM8dV2yofQ"}))
