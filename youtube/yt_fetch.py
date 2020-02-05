@@ -221,7 +221,7 @@ def sitemap(channel_id=os.environ['channel_id']):
     blob = json.loads(r.text)
     sitemap_info = []
     for x in blob['items']:
-        sitemap_info.append(''.join(['http://www.', os.environ['channel_domain'],'/',x['id']['videoId']]))
+        sitemap_info.append(''.join(['https://', os.environ['channel_domain'],'/',x['id']['videoId']]))
     return sitemap_info
 
 if __name__ == '__main__':
