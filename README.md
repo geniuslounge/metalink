@@ -25,31 +25,30 @@ Currently designed to be deployed via [heroku](http://heroku.com), it should be 
 
 
 ## Try it!
-* Post this to Facebook: `http://geniuslounge.com/WaFMDe5cE8w`
-or try your own video: `http://geniuslounge.com/{YouTube Video ID}`
+* Post this to Facebook: `http://video.geniuslounge.com/WaFMDe5cE8w`
+or try your own video: `http://video.geniuslounge.com/{YouTube Video ID}`
 
-* For our RSS feed: `http://geniuslounge.com/feed`
-or another YouTube channel's RSS feed: `http://geniuslounge.com/channel/{YouTube Channel ID}/feed`
+* For our RSS feed: `http://video.geniuslounge.com/feed`
+or another YouTube channel's RSS feed: `http://video.geniuslounge.com/channel/{YouTube Channel ID}/feed`
 
 
 ### Other nifty things to try
 
 * `/` - Redirects users to your channel (and uses your vanity URL if you have one)
-* `/latest`  - Allows you to have a static link that always points to your latest video. [Our Latest video](http://geniuslounge.com/latest)
+* `/latest`  - Allows you to have a static link that always points to your latest video. [Our Latest video](http://video.geniuslounge.com/latest)
 * `/latest/image` - Provides the thumbnail to the latest video.
 * `/<video_id>/image` - Provides the image for the video_id
-* `/contribute` - Provides a pretty link to let your YouTube Community help with translations & transcriptions. [Help us caption](http://geniuslounge.com/contribute)
 * `/feed` - (mentioned above) Provides RSS feed of your YouTube Channel
 * `/sitemap.xml` - Generates a sitemap of the last 50 videos from your feed
 * `/subscribe` - takes users to your subscribe link, prompting them to subscribe if they haven't already
 
 ### Channel specific links
 #### Test these for your own channel
-*  `http://geniuslounge.com/channel/{YouTube Channel ID}`
-* `http://geniuslounge.com/channel/{YouTube Channel ID}/latest`
-* `http://geniuslounge.com/channel/{YouTube Channel ID}/latest/image`
-* `http://geniuslounge.com/channel/{YouTube Channel ID}/feed`
-* `http://geniuslounge.com/channel/{YouTube Channel ID}/mobile_banner`
+*  `http://video.geniuslounge.com/channel/{YouTube Channel ID}`
+* `http://video.geniuslounge.com/channel/{YouTube Channel ID}/latest`
+* `http://video.geniuslounge.com/channel/{YouTube Channel ID}/latest/image`
+* `http://video.geniuslounge.com/channel/{YouTube Channel ID}/feed`
+* `http://video.geniuslounge.com/channel/{YouTube Channel ID}/mobile_banner`
 
 All you need is `Python 3`, a heroku account (Free level is fine),  and to set the following environment variables:
 
