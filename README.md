@@ -2,6 +2,8 @@
 
 # Meta Link
 
+## ⚠️This repo is being archived, and will no longer be maintained as of Aug 19, 2021⚠️
+
 Generate beautiful social links for you YouTube videos, as well as YouTube RSS feeds.
 
 ### Sometimes social media sites don't treat your YouTube videos with enough respect
